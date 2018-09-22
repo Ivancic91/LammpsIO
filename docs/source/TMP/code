@@ -1,0 +1,16 @@
+LammpsIO Documentation
+======================
+
+This module contains two main classes: NetCDFIO which deals with netCDF
+inputs and outputs and DumpIO which deals with dump formatted inputs 
+and outputs. 
+
+.. currentmodule:: mymodule
+
+Class overview
+--------------
+
+.. autosummary::
+   :toctree: stubs
+   :template: LammpsIO
+

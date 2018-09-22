@@ -1,0 +1,263 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Documentation &#8212; LammpsIO 1.0 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Welcome to LammpsIO’s documentation!" href="index.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to LammpsIO’s documentation!"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">LammpsIO 1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="documentation">
+<h1>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module">
+<h2>Module<a class="headerlink" href="#module" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="LammpsIO.html#module-LammpsIO" title="LammpsIO"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LammpsIO</span></code></a></td>
+<td>LammpsIO Created on 21 September 2018 &#64;author: Robert Ivancic</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="LammpsIO.html#LammpsIO.NetCDFIO" title="LammpsIO.NetCDFIO"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LammpsIO.NetCDFIO</span></code></a>()</td>
+<td>Input and output of LAMMPS trajectories in NetCDF (AMBER).</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="LammpsIO.html#LammpsIO.DumpIO" title="LammpsIO.DumpIO"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LammpsIO.DumpIO</span></code></a>()</td>
+<td>Input and output LAMMPS trajectories in dump (lammpstrj) format.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="netcdfio-methods">
+<h2>NetCDFIO Methods<a class="headerlink" href="#netcdfio-methods" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="LammpsIO.html#LammpsIO.NetCDFIO.OpenO" title="LammpsIO.NetCDFIO.OpenO"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LammpsIO.NetCDFIO.OpenO</span></code></a>(nc_file_name)</td>
+<td>Opens NetCDF file for output.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="LammpsIO.html#LammpsIO.NetCDFIO.Sett" title="LammpsIO.NetCDFIO.Sett"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LammpsIO.NetCDFIO.Sett</span></code></a>(f,&nbsp;t)</td>
+<td>Sets timestep t of frame f</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="LammpsIO.html#LammpsIO.NetCDFIO.SetBB" title="LammpsIO.NetCDFIO.SetBB"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LammpsIO.NetCDFIO.SetBB</span></code></a>(f,&nbsp;bb_t)</td>
+<td>Sets box boundaries of frame f.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="LammpsIO.html#LammpsIO.NetCDFIO.SetPos" title="LammpsIO.NetCDFIO.SetPos"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LammpsIO.NetCDFIO.SetPos</span></code></a>(f,&nbsp;pos_t)</td>
+<td>Sets particle positions (coordinates) at frame f</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="LammpsIO.html#LammpsIO.NetCDFIO.SetDataCol" title="LammpsIO.NetCDFIO.SetDataCol"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LammpsIO.NetCDFIO.SetDataCol</span></code></a>(f,&nbsp;label,&nbsp;…)</td>
+<td>Sets a data column at frame f</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="LammpsIO.html#LammpsIO.NetCDFIO.CloseO" title="LammpsIO.NetCDFIO.CloseO"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LammpsIO.NetCDFIO.CloseO</span></code></a>()</td>
+<td>Closes output NetCDF file</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="LammpsIO.html#LammpsIO.NetCDFIO.OpenI" title="LammpsIO.NetCDFIO.OpenI"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LammpsIO.NetCDFIO.OpenI</span></code></a>(nc_file_name)</td>
+<td>Opens NetCDF file for input.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="LammpsIO.html#LammpsIO.NetCDFIO.NumDims" title="LammpsIO.NetCDFIO.NumDims"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LammpsIO.NetCDFIO.NumDims</span></code></a>()</td>
+<td>Outputs number of dimensions of current simulation being read.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="LammpsIO.html#LammpsIO.NetCDFIO.NumFrames" title="LammpsIO.NetCDFIO.NumFrames"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LammpsIO.NetCDFIO.NumFrames</span></code></a>()</td>
+<td>Outputs number of frames of current simulation being read.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="LammpsIO.html#LammpsIO.NetCDFIO.NumParts" title="LammpsIO.NetCDFIO.NumParts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LammpsIO.NetCDFIO.NumParts</span></code></a>()</td>
+<td>Outputs number of particles of current simulation being read.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="LammpsIO.html#LammpsIO.NetCDFIO.Gett" title="LammpsIO.NetCDFIO.Gett"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LammpsIO.NetCDFIO.Gett</span></code></a>(f)</td>
+<td>Gets timestep t of frame f</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="LammpsIO.html#LammpsIO.NetCDFIO.GetBB" title="LammpsIO.NetCDFIO.GetBB"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LammpsIO.NetCDFIO.GetBB</span></code></a>(f)</td>
+<td>Gets box boundaries (BB) of frame f.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="LammpsIO.html#LammpsIO.NetCDFIO.GetPos" title="LammpsIO.NetCDFIO.GetPos"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LammpsIO.NetCDFIO.GetPos</span></code></a>(f)</td>
+<td>Gets particle positions (coordinates) at frame f</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="LammpsIO.html#LammpsIO.NetCDFIO.GetDataCol" title="LammpsIO.NetCDFIO.GetDataCol"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LammpsIO.NetCDFIO.GetDataCol</span></code></a>(f,&nbsp;label)</td>
+<td>Sets a data column at frame f</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="LammpsIO.html#LammpsIO.NetCDFIO.CloseI" title="LammpsIO.NetCDFIO.CloseI"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LammpsIO.NetCDFIO.CloseI</span></code></a>()</td>
+<td>Closes input NetCDF file</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="dumpio-methods">
+<h2>DumpIO Methods<a class="headerlink" href="#dumpio-methods" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="LammpsIO.html#LammpsIO.DumpIO.OpenO" title="LammpsIO.DumpIO.OpenO"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LammpsIO.DumpIO.OpenO</span></code></a>(dump_file_name)</td>
+<td>Opens dump file for output.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="LammpsIO.html#LammpsIO.DumpIO.Sett" title="LammpsIO.DumpIO.Sett"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LammpsIO.DumpIO.Sett</span></code></a>(t)</td>
+<td>Sets timestep t of current frame</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="LammpsIO.html#LammpsIO.DumpIO.SetBB" title="LammpsIO.DumpIO.SetBB"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LammpsIO.DumpIO.SetBB</span></code></a>(bb_t)</td>
+<td>Sets box boundaries (BB) of current frame</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="LammpsIO.html#LammpsIO.DumpIO.SetPos" title="LammpsIO.DumpIO.SetPos"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LammpsIO.DumpIO.SetPos</span></code></a>(pos_t)</td>
+<td>Sets particle positions of current frame</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="LammpsIO.html#LammpsIO.DumpIO.SetDataCol" title="LammpsIO.DumpIO.SetDataCol"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LammpsIO.DumpIO.SetDataCol</span></code></a>(label,&nbsp;data_col_t)</td>
+<td>Sets particle positions of current frame</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="LammpsIO.html#LammpsIO.DumpIO.WriteNextFrame" title="LammpsIO.DumpIO.WriteNextFrame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LammpsIO.DumpIO.WriteNextFrame</span></code></a>()</td>
+<td>Writes the next frame to the dump file.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="LammpsIO.html#LammpsIO.DumpIO.CloseO" title="LammpsIO.DumpIO.CloseO"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LammpsIO.DumpIO.CloseO</span></code></a>()</td>
+<td>Closes output file for dump</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="LammpsIO.html#LammpsIO.DumpIO.OpenI" title="LammpsIO.DumpIO.OpenI"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LammpsIO.DumpIO.OpenI</span></code></a>(dump_file_name)</td>
+<td>Opens lammpstrj file for input</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="LammpsIO.html#LammpsIO.DumpIO.LoadNextFrame" title="LammpsIO.DumpIO.LoadNextFrame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LammpsIO.DumpIO.LoadNextFrame</span></code></a>()</td>
+<td>Loads next frame in the dump (lammpstrj) file.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="LammpsIO.html#LammpsIO.DumpIO.SortByID" title="LammpsIO.DumpIO.SortByID"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LammpsIO.DumpIO.SortByID</span></code></a>()</td>
+<td>Sorts particles of all arrays by their id</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="LammpsIO.html#LammpsIO.DumpIO.NumDims" title="LammpsIO.DumpIO.NumDims"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LammpsIO.DumpIO.NumDims</span></code></a>()</td>
+<td>Outputs number of dimensions of current simulation being read.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="LammpsIO.html#LammpsIO.DumpIO.NumFrames" title="LammpsIO.DumpIO.NumFrames"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LammpsIO.DumpIO.NumFrames</span></code></a>()</td>
+<td>Outputs number of frames of current simulation being read.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="LammpsIO.html#LammpsIO.DumpIO.NumPartsCurrentf" title="LammpsIO.DumpIO.NumPartsCurrentf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LammpsIO.DumpIO.NumPartsCurrentf</span></code></a>()</td>
+<td>Outputs number of particles in current frame.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="LammpsIO.html#LammpsIO.DumpIO.Gett" title="LammpsIO.DumpIO.Gett"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LammpsIO.DumpIO.Gett</span></code></a>()</td>
+<td>Gets timestep t of current frame.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="LammpsIO.html#LammpsIO.DumpIO.GetBB" title="LammpsIO.DumpIO.GetBB"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LammpsIO.DumpIO.GetBB</span></code></a>()</td>
+<td>Gets box boundary (BB) of current frame.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="LammpsIO.html#LammpsIO.DumpIO.GetPos" title="LammpsIO.DumpIO.GetPos"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LammpsIO.DumpIO.GetPos</span></code></a>()</td>
+<td>Gets particle positions (coordinates) of current frame</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="LammpsIO.html#LammpsIO.DumpIO.GetDataCol" title="LammpsIO.DumpIO.GetDataCol"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LammpsIO.DumpIO.GetDataCol</span></code></a>(label)</td>
+<td>Gets data column of current frame</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="LammpsIO.html#LammpsIO.DumpIO.CloseI" title="LammpsIO.DumpIO.CloseI"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LammpsIO.DumpIO.CloseI</span></code></a>()</td>
+<td>Closes input (reading) dump file.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Documentation</a><ul>
+<li><a class="reference internal" href="#module">Module</a></li>
+<li><a class="reference internal" href="#classes">Classes</a></li>
+<li><a class="reference internal" href="#netcdfio-methods">NetCDFIO Methods</a></li>
+<li><a class="reference internal" href="#dumpio-methods">DumpIO Methods</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Welcome to LammpsIO’s documentation!</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/modules.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to LammpsIO’s documentation!"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">LammpsIO 1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Robert J. S. Ivancic.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.0.
+    </div>
+  </body>
+</html>
