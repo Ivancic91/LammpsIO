@@ -891,19 +891,16 @@ class DumpIO:
   def SortByID(self):
     """ Sorts particles of all arrays by their id
 
-    Sorts pos_t, bb_t, id_t, and data_col_t arrays so that 
+    Sorts pos_t, id_t, and data_col_t arrays so that 
     id_t = range(n_p)
     """
 
     # ranking of id values
-    tmp = id_t.argsort()
-    ranks = np.empty_like(tmp)
-    ranks[tmp] = np.arange(len(tmp))
+    ranks = self.__id_t.argsort()
 
     # Performs sorting
-    id_t[ranks] = id_t
-    pos_t[ranks] = pos_t
-    bb_t[ranks] = bb_t
+    self.__id_t = self.__id_t[ranks]
+    self.__pos_t = self.__pos_t[ranks]
     for col in range(len(self.__DataCol_arrs)):
-      self.__DataCol_arrs[col][ranks] = self.__DataCol_arrs[col]
+      self.__DataCol_arrs[col] = self.__DataCol_arrs[col][ranks]
 
