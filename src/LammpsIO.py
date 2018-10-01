@@ -148,6 +148,22 @@ class NetCDFIO:
       self.__cell_a_var = self.__nc_file.createVariable('cell_angles', 
         'f4', ('frame','cell_angular'))
       self.__cell_a_var.units = 'degree'
+
+    # Sets dimension of output
+    if not self.__setBB and not self.__setPos:
+      if bb_t.shape[0] != 2 and bb_t.shape[0] != 3:
+        print 'ERROR: bb_t.shape[0] != 2 or 3'
+        sys.exit(-1)
+      self.__d = bb_t.shape[0]
+      self.__nc_file.dimension = self.__d
+
+    # Adds a 3rd dimension for 2D data
+    if self.__d != bb_t.shape[0]:
+      print 'ERROR: dimension != bb_t.shape[0]'
+      sys.exit(-1)
+    if self.__d == 2:
+      bb_t = np.vstack((bb_t, np.array([[-10**(-6),10**(-6)]])))
+
     self.__cell_o_var[f] = bb_t[:,0]
     self.__cell_l_var[f] = bb_t[:,1]-bb_t[:,0]
     self.__cell_a_var[f] = np.ones(3)*90
@@ -173,6 +189,22 @@ class NetCDFIO:
       self.__c_var = self.__nc_file.createVariable('coordinates', 'f4',
         ('frame','atom','spatial'))
       self.__c_var.units = 'LJ'
+
+    # Sets dimension of output
+    if not self.__setBB and not self.__setPos:
+      if pos_t.shape[1] != 2 and pos_t.shape[1] != 3:
+        print 'ERROR: pos_t.shape[1] != 2 or 3'
+        sys.exit(-1)
+      self.__d = pos_t.shape[1]
+      self.__nc_file.dimension = self.__d
+
+    # Adds a 3rd dimension for 2D data
+    if self.__d != pos_t.shape[1]:
+      print 'ERROR: dimension != pos_t.shape[1]'
+      sys.exit(-1)
+    if self.__d == 2:
+      pos_t = np.hstack((pos_t, np.array([np.zeros(pos_t.shape[0])]).T))
+
     self.__c_var[f] = pos_t
     self.__setPos = True
 
@@ -252,7 +284,15 @@ class NetCDFIO:
       print 'ERROR: Must use OpenI before num functions'
       sys.exit(-1)
     self.__numDims = True
-    return 3 # HACK!!!
+
+    # Checks if has attribute dimensions. If it does takes that
+    # number to be ground truth. Otherwise assumes 3D.
+    if hasattr(self.__nc_file, 'dimension'):
+      self.__d = self.__nc_file.dimension
+    else:
+      self.__d = 3
+
+    return self.__d
 
   # returns number of frames
   def NumFrames(self):
@@ -330,8 +370,13 @@ class NetCDFIO:
     self.__getBB = True
     bb_L = self.__nc_file.variables['cell_origin'][f]
     bb_R = self.__nc_file.variables['cell_lengths'][f] + bb_L
+
     bb_t = np.vstack((bb_L, bb_R)).T
-    return bb_t
+
+    # Gets dimensions of array
+    d = self.NumDims()
+
+    return bb_t[:d]
 
   # returns atom coordinates for frame f
   def GetPos(self, f):
@@ -353,7 +398,11 @@ class NetCDFIO:
       sys.exit(-1)
     self.__getPos = True
     pos_t = self.__nc_file.variables['coordinates'][f]
-    return pos_t
+
+    # Gets dimensions of array
+    d = self.NumDims()
+
+    return pos_t[:,:int(d)]
 
   # returns box boundaries for frame f
   def GetDataCol(self, f, label):
@@ -479,6 +528,21 @@ class DumpIO:
     if not self.__openO:
       print 'ERROR: Must use OpenO before set functions'
       sys.exit(-1)
+
+    # Sets dimension of output
+    if not self.__setBB and not self.__setPos:
+      if bb_t.shape[0] != 2 and bb_t.shape[0] != 3:
+        print 'ERROR: bb_t.shape[0] != 2 or 3'
+        sys.exit(-1)
+      self.__d = bb_t.shape[0]
+
+    # Adds a 3rd dimension for 2D data
+    if self.__d != bb_t.shape[0]:
+      print 'ERROR: dimension != bb_t.shape[0]'
+      sys.exit(-1)
+    if self.__d == 2:
+      bb_t = np.vstack((bb_t, np.array([[-10**(-6),10**(-6)]])))
+
     self.__bb_t = bb_t
     self.__setBB = True
 
@@ -511,6 +575,19 @@ class DumpIO:
     if not self.__openO:
       print 'ERROR: Must use OpenO before set functions'
       sys.exit(-1)
+
+    # Sets dimension of output
+    if not self.__setBB and not self.__setPos:
+      if pos_t.shape[1] != 2 and pos_t.shape[1] != 3:
+        print 'ERROR: pos_t.shape[1] != 2 or 3'
+        sys.exit(-1)
+      self.__d = pos_t.shape[1]
+
+    # Adds a 3rd dimension for 2D data
+    if self.__d != pos_t.shape[1]:
+      print 'ERROR: dimension != pos_t.shape[1]'
+      sys.exit(-1)
+
     self.__pos_t = pos_t
     self.__setPos = True
 
@@ -564,9 +641,6 @@ class DumpIO:
     if not self.__setPos:
       print error_message + 'SetPos is used'
       sys.exit(-1)
-    if self.__bb_t.shape[0] != self.__pos_t.shape[1]:
-      print error_message+'bb_t.shape[0] == pos_t.shape[1]'
-      sys.exit(-1)
     if len(self.__DataCols) != len(self.__DataCol_arrs):
       print error_message+'All data columns are stored in each frame'
       sys.exit(-1)
@@ -589,10 +663,10 @@ class DumpIO:
 
     # Finds number of particles and dimension
     n_p = self.__pos_t.shape[0]
-    d = self.__pos_t.shape[1]
-    if d==2:
+    bb_t = self.__bb_t
+    if self.__d == 2:
       dim_str = 'x y '
-    elif d==3:
+    elif self.__d==3:
       dim_str = 'x y z '
     else:
       print 'ERROR: Must have 2 or 3 dimensions'
@@ -603,7 +677,7 @@ class DumpIO:
     self.__dump_file.write('ITEM: NUMBER OF ATOMS\n'+str(n_p)+'\n')
     self.__dump_file.write('ITEM: BOX BOUNDS\n')
     bb_str_t = ' \n'.join([' '.join(lin) for lin \
-          in self.__bb_t.astype(str)])+'\n'
+          in bb_t.astype(str)])+'\n'
     self.__dump_file.write(bb_str_t)
     dataH_str = 'ITEM: ATOMS '+'id '+dim_str+\
           ' '.join(self.__DataCols)+' \n'
@@ -665,7 +739,6 @@ class DumpIO:
           line = self.__dump_file.readline()
         self.__dump_file.seek(last_pos)
         self.__bb_t = np.array(bb_t)
-        d = self.__bb_t.shape[0]
         line = ''
       if line[:14] == 'ITEM: TIMESTEP':
         line = self.__dump_file.readline()
@@ -676,15 +749,15 @@ class DumpIO:
 
     # Obtains data columns of data
     DataCols = np.array(line[11:].split())
-    if ('z' in DataCols and d == 2) or ('z' not in DataCols and d == 3):
-      print 'ERROR: dimensions of bb_t and atoms do not match.'
     col_id = np.where(DataCols=='id')[0][0]
     col_x = np.where(DataCols=='x')[0][0]
     col_y = np.where(DataCols=='y')[0][0]
-    if d==3:
+    if 'z' in DataCols:
+      self.__d = 3
       col_z = np.where(DataCols=='z')[0][0]
       col_coordinates = np.array([col_x, col_y, col_z, col_id])
     else:
+      self.__d = 2
       col_coordinates = np.array([col_x, col_y, col_id])
     remove_cols = np.array(['id','x','y','z'])
     DataCols_no_coordinates = np.setdiff1d(DataCols,remove_cols)
@@ -694,7 +767,7 @@ class DumpIO:
     n_DataCols = len(self.__DataCols)
 
     # Obtains data from frame
-    self.__pos_t = np.zeros((n_p, d))
+    self.__pos_t = np.zeros((n_p, self.__d))
     self.__id_t = np.zeros(n_p)
     self.__DataCol_arrs = [np.zeros(n_p) for ii in range(n_DataCols)]
     for pp in range(n_p):
@@ -704,7 +777,8 @@ class DumpIO:
       # Stores data
       self.__pos_t[pp,0] = float(data_pp[col_x])
       self.__pos_t[pp,1] = float(data_pp[col_y])
-      self.__pos_t[pp,2] = float(data_pp[col_z])
+      if self.__d != 2:
+        self.__pos_t[pp,2] = float(data_pp[col_z])
       self.__id_t[pp] = int(data_pp[col_id])
       for idx, col in enumerate(DataCols_idx):
         self.__DataCol_arrs[idx][pp] = float(data_pp[col])
@@ -729,7 +803,7 @@ class DumpIO:
 
     self.__numDims = True
 
-    return self.__pos_t.shape[1]
+    return self.__d
 
   def NumFrames(self):
     """Outputs number of frames of current simulation being read.
@@ -812,7 +886,7 @@ class DumpIO:
       sys.exit(-1)
     self.__getBB = True
     bb_t = self.__bb_t
-    return bb_t
+    return bb_t[:self.__d]
 
   def GetID(self):
     """ Gets particle ids of current frame
