@@ -67,10 +67,10 @@ class NetCDFIO:
     """
 
     if self.__openI:
-      print 'ERROR: Cannot set input and output in same instance'
+      print('ERROR: Cannot set input and output in same instance')
       sys.exit(-1)
     if self.__openO:
-      print 'ERROR: Cannot open file twice!'
+      print('ERROR: Cannot open file twice!')
       sys.exit(-1)
 
     # Conventions
@@ -113,7 +113,7 @@ class NetCDFIO:
 
     """
     if not self.__openO:
-      print 'ERROR: Must use OpenO before set functions'
+      print('ERROR: Must use OpenO before set functions')
       sys.exit(-1)
     if not self.__sett:
       self.__t_var = self.__nc_file.createVariable('time', 'f4',
@@ -136,7 +136,7 @@ class NetCDFIO:
     """
 
     if not self.__openO:
-      print 'ERROR: Must use OpenO before set functions'
+      print('ERROR: Must use OpenO before set functions')
       sys.exit(-1)
     if not self.__setBB:
       self.__cell_o_var = self.__nc_file.createVariable('cell_origin', 
@@ -152,14 +152,14 @@ class NetCDFIO:
     # Sets dimension of output
     if not self.__setBB and not self.__setPos:
       if bb_t.shape[0] != 2 and bb_t.shape[0] != 3:
-        print 'ERROR: bb_t.shape[0] != 2 or 3'
+        print('ERROR: bb_t.shape[0] != 2 or 3')
         sys.exit(-1)
       self.__d = bb_t.shape[0]
       self.__nc_file.dimension = self.__d
 
     # Adds a 3rd dimension for 2D data
     if self.__d != bb_t.shape[0]:
-      print 'ERROR: dimension != bb_t.shape[0]'
+      print('ERROR: dimension != bb_t.shape[0]')
       sys.exit(-1)
     if self.__d == 2:
       bb_t = np.vstack((bb_t, np.array([[-10**(-6),10**(-6)]])))
@@ -181,7 +181,7 @@ class NetCDFIO:
       
     """ 
     if not self.__openO:
-      print 'ERROR: Must use OpenO before set functions'
+      print('ERROR: Must use OpenO before set functions')
       sys.exit(-1)
     if not self.__setPos and not self.__setDataCol:
         self.__nc_file.createDimension('atom', pos_t.shape[0])
@@ -193,14 +193,14 @@ class NetCDFIO:
     # Sets dimension of output
     if not self.__setBB and not self.__setPos:
       if pos_t.shape[1] != 2 and pos_t.shape[1] != 3:
-        print 'ERROR: pos_t.shape[1] != 2 or 3'
+        print('ERROR: pos_t.shape[1] != 2 or 3')
         sys.exit(-1)
       self.__d = pos_t.shape[1]
       self.__nc_file.dimension = self.__d
 
     # Adds a 3rd dimension for 2D data
     if self.__d != pos_t.shape[1]:
-      print 'ERROR: dimension != pos_t.shape[1]'
+      print('ERROR: dimension != pos_t.shape[1]')
       sys.exit(-1)
     if self.__d == 2:
       pos_t = np.hstack((pos_t, np.array([np.zeros(pos_t.shape[0])]).T))
@@ -227,7 +227,7 @@ class NetCDFIO:
       
     """
     if not self.__openO:
-      print 'ERROR: Must use OpenO before set functions'
+      print('ERROR: Must use OpenO before set functions')
       sys.exit(-1)
     if not self.__setPos and not self.__setDataCol:
         self.__nc_file.createDimension('atom', pos_t.shape[0])
@@ -260,10 +260,10 @@ class NetCDFIO:
 
     """
     if self.__openI:
-      print 'ERROR: Cannot open file twice!'
+      print('ERROR: Cannot open file twice!')
       sys.exit(-1)
     if self.__openO:
-      print 'ERROR: Cannot set input and output in same instance'
+      print('ERROR: Cannot set input and output in same instance')
       sys.exit(-1)
     self.__nc_file = Dataset(nc_file_name, 'r', format='NETCDF4')
 
@@ -281,7 +281,7 @@ class NetCDFIO:
     """
 
     if not self.__openI:
-      print 'ERROR: Must use OpenI before num functions'
+      print('ERROR: Must use OpenI before num functions')
       sys.exit(-1)
     self.__numDims = True
 
@@ -305,7 +305,7 @@ class NetCDFIO:
 
     """
     if not self.__openI:
-      print 'ERROR: Must use OpenI before num functions'
+      print('ERROR: Must use OpenI before num functions')
       sys.exit(-1)
     self.__numFrames = True
     n_f = self.__nc_file.dimensions['frame'].size
@@ -322,7 +322,7 @@ class NetCDFIO:
 
     """
     if not self.__openI:
-      print 'ERROR: Must use OpenI before num functions'
+      print('ERROR: Must use OpenI before num functions')
       sys.exit(-1)
     self.__numParts = True
     n_p = self.__nc_file.dimensions['atom'].size
@@ -343,7 +343,7 @@ class NetCDFIO:
 
     """
     if not self.__openI:
-      print 'ERROR: Must use OpenI before get functions'
+      print('ERROR: Must use OpenI before get functions')
       sys.exit(-1)
     self.__gett = True
     t = self.__nc_file.variables['time'][f]
@@ -365,7 +365,7 @@ class NetCDFIO:
       box boundaries at time t
     """
     if not self.__openI:
-      print 'ERROR: Must use OpenI before get functions'
+      print('ERROR: Must use OpenI before get functions')
       sys.exit(-1)
     self.__getBB = True
     bb_L = self.__nc_file.variables['cell_origin'][f]
@@ -394,7 +394,7 @@ class NetCDFIO:
       
     """
     if not self.__openI:
-      print 'ERROR: Must use OpenI before get functions'
+      print('ERROR: Must use OpenI before get functions')
       sys.exit(-1)
     self.__getPos = True
     pos_t = self.__nc_file.variables['coordinates'][f]
@@ -427,7 +427,7 @@ class NetCDFIO:
       
     """
     if not self.__openI:
-      print 'ERROR: Must use OpenI before get functions'
+      print('ERROR: Must use OpenI before get functions')
       sys.exit(-1)
     self.__getDataCol = True
     data_col = self.__nc_file.variables[label][f]
@@ -490,10 +490,10 @@ class DumpIO:
     """
 
     if self.__openI:
-      print 'ERROR: Cannot set input and output in same instance'
+      print('ERROR: Cannot set input and output in same instance')
       sys.exit(-1)
     if self.__openO:
-      print 'ERROR: Cannot open file twice!'
+      print('ERROR: Cannot open file twice!')
       sys.exit(-1)
 
     # Opens file for writing
@@ -511,7 +511,7 @@ class DumpIO:
       timestep of current frame
     """
     if not self.__openO:
-      print 'ERROR: Must use OpenO before set functions'
+      print('ERROR: Must use OpenO before set functions')
       sys.exit(-1)
     self.__t = t
     self.__sett = True
@@ -526,19 +526,19 @@ class DumpIO:
     """
 
     if not self.__openO:
-      print 'ERROR: Must use OpenO before set functions'
+      print('ERROR: Must use OpenO before set functions')
       sys.exit(-1)
 
     # Sets dimension of output
     if not self.__setBB and not self.__setPos:
       if bb_t.shape[0] != 2 and bb_t.shape[0] != 3:
-        print 'ERROR: bb_t.shape[0] != 2 or 3'
+        print('ERROR: bb_t.shape[0] != 2 or 3')
         sys.exit(-1)
       self.__d = bb_t.shape[0]
 
     # Adds a 3rd dimension for 2D data
     if self.__d != bb_t.shape[0]:
-      print 'ERROR: dimension != bb_t.shape[0]'
+      print('ERROR: dimension != bb_t.shape[0]')
       sys.exit(-1)
     if self.__d == 2:
       bb_t = np.vstack((bb_t, np.array([[-10**(-6),10**(-6)]])))
@@ -557,7 +557,7 @@ class DumpIO:
     """
 
     if not self.__openO:
-      print 'ERROR: Must use OpenO before set functions'
+      print('ERROR: Must use OpenO before set functions')
       sys.exit(-1)
     self.__id_t = id_t
     self.__setID = True
@@ -573,19 +573,19 @@ class DumpIO:
 
     """
     if not self.__openO:
-      print 'ERROR: Must use OpenO before set functions'
+      print('ERROR: Must use OpenO before set functions')
       sys.exit(-1)
 
     # Sets dimension of output
     if not self.__setBB and not self.__setPos:
       if pos_t.shape[1] != 2 and pos_t.shape[1] != 3:
-        print 'ERROR: pos_t.shape[1] != 2 or 3'
+        print('ERROR: pos_t.shape[1] != 2 or 3')
         sys.exit(-1)
       self.__d = pos_t.shape[1]
 
     # Adds a 3rd dimension for 2D data
     if self.__d != pos_t.shape[1]:
-      print 'ERROR: dimension != pos_t.shape[1]'
+      print('ERROR: dimension != pos_t.shape[1]')
       sys.exit(-1)
 
     self.__pos_t = pos_t
@@ -604,7 +604,7 @@ class DumpIO:
 
     """
     if not self.__openO:
-      print 'ERROR: Must use OpenO before set functions'
+      print('ERROR: Must use OpenO before set functions')
       sys.exit(-1)
     if label not in self.__DataCols:
       self.__DataCols.append(label)
@@ -630,35 +630,35 @@ class DumpIO:
     """
     error_message = 'ERROR: Incorrect input formatting. Ensure:\n\t'
     if not self.__openO:
-      print 'ERROR: Must use OpenO before Write functions'
+      print('ERROR: Must use OpenO before Write functions')
       sys.exit(-1)
     if not self.__sett:
-      print error_message + 'Sett is used'
+      print(error_message + 'Sett is used')
       sys.exit(-1)
     if not self.__setBB:
-      print error_message + 'SetBB is used'
+      print(error_message + 'SetBB is used')
       sys.exit(-1)
     if not self.__setPos:
-      print error_message + 'SetPos is used'
+      print(error_message + 'SetPos is used')
       sys.exit(-1)
     if len(self.__DataCols) != len(self.__DataCol_arrs):
-      print error_message+'All data columns are stored in each frame'
+      print(error_message+'All data columns are stored in each frame')
       sys.exit(-1)
     if self.__id_t.shape[0] != self.__pos_t.shape[0] and self.__setID:
-      print error_message+'id_t.shape[0] == pos_t.shape[0]'
+      print(error_message+'id_t.shape[0] == pos_t.shape[0]')
       sys.exit(-1)
     elif not self.__setID:
       # Automatically assumes particles in order if ids not set
       if not self.__setIDWarning:
-        print 'WARNING: SetID function not used. Assuming particle ID'
-        print '\tis in order particles are in pos_t'
+        print('WARNING: SetID function not used. Assuming particle ID')
+        print('\tis in order particles are in pos_t')
         self.__setIDWarning = True
       self.__id_t = np.arange(self.__pos_t.shape[0])+1
     for col in range(len(self.__DataCols)):
       if self.__DataCol_arrs[col].shape[0] != self.__pos_t.shape[0]:
-        print error_message+'For data column '+\
+        print(error_message+'For data column '+\
               str(self.__DataCols[col])+', '+\
-              'col.shape[0] == pos_t.shape[0]'
+              'col.shape[0] == pos_t.shape[0]')
         sys.exit(-1)
 
     # Finds number of particles and dimension
@@ -669,7 +669,7 @@ class DumpIO:
     elif self.__d==3:
       dim_str = 'x y z '
     else:
-      print 'ERROR: Must have 2 or 3 dimensions'
+      print('ERROR: Must have 2 or 3 dimensions')
       sys.exit(-1)
 
     # Writes frame header
@@ -708,10 +708,10 @@ class DumpIO:
     (input)
     """
     if self.__openI:
-      print 'ERROR: Cannot open file twice!'
+      print('ERROR: Cannot open file twice!')
       sys.exit(-1)
     if self.__openO:
-      print 'ERROR: Cannot set input and output in same instance'
+      print('ERROR: Cannot set input and output in same instance')
       sys.exit(-1)
 
     # Opens file for writing
@@ -794,7 +794,7 @@ class DumpIO:
       Number of dimensions of simulation you are reading.
     """
     if not self.__openI:
-      print 'ERROR: Must use OpenI before num functions'
+      print('ERROR: Must use OpenI before num functions')
       sys.exit(-1)
     if not self.__loadNextFrame:
       last_pos = self.__dump_file.tell()
@@ -814,7 +814,7 @@ class DumpIO:
       Number of frames of the simulation you are reading.
     """
     if not self.__openI:
-      print 'ERROR: Must use OpenI before num functions'
+      print('ERROR: Must use OpenI before num functions')
       sys.exit(-1)
 
     # stores current position in file and restarts read
@@ -846,7 +846,7 @@ class DumpIO:
 
     """
     if not self.__openI:
-      print 'ERROR: Must use OpenI before num functions'
+      print('ERROR: Must use OpenI before num functions')
       sys.exit(-1)
     if not self.__loadNextFrame:
       last_pos = self.__dump_file.tell()
@@ -866,7 +866,7 @@ class DumpIO:
       timestep of the current frame.
     """
     if not self.__openI:
-      print 'ERROR: Must use OpenI before get functions'
+      print('ERROR: Must use OpenI before get functions')
       sys.exit(-1)
     self.__gett = True
     t = self.__t
@@ -882,7 +882,7 @@ class DumpIO:
       box boundaries of current frame
     """
     if not self.__openI:
-      print 'ERROR: Must use OpenI before get functions'
+      print('ERROR: Must use OpenI before get functions')
       sys.exit(-1)
     self.__getBB = True
     bb_t = self.__bb_t
@@ -899,7 +899,7 @@ class DumpIO:
     """
 
     if not self.__openI:
-      print 'ERROR: Must use OpenI before get functions'
+      print('ERROR: Must use OpenI before get functions')
       sys.exit(-1)
     self.__getBB = True
     id_t = self.__id_t.astype(int)
@@ -916,7 +916,7 @@ class DumpIO:
 
     """
     if not self.__openI:
-      print 'ERROR: Must use OpenI before get functions'
+      print('ERROR: Must use OpenI before get functions')
       sys.exit(-1)
     self.__getPos = True
     pos_t = self.__pos_t
@@ -944,14 +944,14 @@ class DumpIO:
 
     """
     if not self.__openI:
-      print 'ERROR: Must use OpenI before get functions'
+      print('ERROR: Must use OpenI before get functions')
       sys.exit(-1)
     self.__getDataCol = True
     try:
       data_col = np.where(self.__DataCols==label)[0][0]
       data = self.__DataCol_arrs[data_col]
     except:
-      print 'ERROR: label for data column not in dump file'
+      print('ERROR: label for data column not in dump file')
       sys.exit(-1)
     return data
 
