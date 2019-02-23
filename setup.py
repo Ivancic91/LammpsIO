@@ -10,8 +10,7 @@ with open('README.md', 'r') as f:
 
 setup(
     name = 'LammpsIO',
-    package_dir = {'': 'src'},
-    packages = find_packages(where='src'),
+    packages = ['LammpsIO'],
     version = '0.0.1',
     description = desc,
     long_description = long_desc,
