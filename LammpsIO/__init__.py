@@ -1,1 +1,1 @@
-from .LammpsIO import LammpsIO, DumpIO
+from .LammpsIO import NetCDFIO, DumpIO
