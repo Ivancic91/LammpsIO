@@ -85,7 +85,7 @@ class NetCDFIO:
     self.__nc_file.createDimension('spatial', 3)
     self.__nc_file.createDimension('cell_spatial', 3)
     self.__nc_file.createDimension('cell_angular', 3)
-    self.__nc_file.createDimension('label', 5)
+    self.__nc_file.createDimension('label', 6)
 
     # Preliminary variables
     char_sp_var = self.__nc_file.createVariable('char spatial',
