@@ -96,11 +96,8 @@ class NetCDFIO:
     char_csp_var[:] = ['a','b','c']
     char_sp_var = self.__nc_file.createVariable('char cell_angular',
       'S1',('cell_angular','label'))
-    char_sp_var[:] = [\
-          ['a','l','p','h','a',''],\
-          ['b','e','t','a','',''],\
-          ['g','a','m','m','m','a']]
- 
+    char_sp_var[:] = stringtochar(np.array(['alpha','beta','gamma']))
+  
     # notes OpenO has been run
     self.__openO = True
 
@@ -636,19 +633,19 @@ class DumpIO:
       print('ERROR: Must use OpenO before Write functions')
       sys.exit(-1)
     if not self.__sett:
-      print((error_message + 'Sett is used'))
+      print(error_message + 'Sett is used')
       sys.exit(-1)
     if not self.__setBB:
-      print((error_message + 'SetBB is used'))
+      print(error_message + 'SetBB is used')
       sys.exit(-1)
     if not self.__setPos:
-      print((error_message + 'SetPos is used'))
+      print(error_message + 'SetPos is used')
       sys.exit(-1)
     if len(self.__DataCols) != len(self.__DataCol_arrs):
-      print((error_message+'All data columns are stored in each frame'))
+      print(error_message+'All data columns are stored in each frame')
       sys.exit(-1)
     if self.__id_t.shape[0] != self.__pos_t.shape[0] and self.__setID:
-      print((error_message+'id_t.shape[0] == pos_t.shape[0]'))
+      print(error_message+'id_t.shape[0] == pos_t.shape[0]')
       sys.exit(-1)
     elif not self.__setID:
       # Automatically assumes particles in order if ids not set
@@ -659,9 +656,9 @@ class DumpIO:
       self.__id_t = np.arange(self.__pos_t.shape[0])+1
     for col in range(len(self.__DataCols)):
       if self.__DataCol_arrs[col].shape[0] != self.__pos_t.shape[0]:
-        print((error_message+'For data column '+\
+        print(error_message+'For data column '+\
               str(self.__DataCols[col])+', '+\
-              'col.shape[0] == pos_t.shape[0]'))
+              'col.shape[0] == pos_t.shape[0]')
         sys.exit(-1)
 
     # Finds number of particles and dimension

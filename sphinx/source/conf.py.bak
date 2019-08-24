@@ -19,14 +19,14 @@ sys.path.insert(0, os.path.abspath('./../../src/'))
 
 # -- Project information -----------------------------------------------------
 
-project = 'LammpsIO'
-copyright = '2018, Robert J. S. Ivancic'
-author = 'Robert J. S. Ivancic'
+project = u'LammpsIO'
+copyright = u'2018, Robert J. S. Ivancic'
+author = u'Robert J. S. Ivancic'
 
 # The short X.Y version
-version = ''
+version = u''
 # The full version, including alpha/beta/rc tags
-release = '1.0'
+release = u'1.0'
 
 
 # -- General configuration ---------------------------------------------------
@@ -136,8 +136,8 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'LammpsIO.tex', 'LammpsIO Documentation',
-     'Robert J. S. Ivancic', 'manual'),
+    (master_doc, 'LammpsIO.tex', u'LammpsIO Documentation',
+     u'Robert J. S. Ivancic', 'manual'),
 ]
 
 
@@ -146,7 +146,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'lammpsio', 'LammpsIO Documentation',
+    (master_doc, 'lammpsio', u'LammpsIO Documentation',
      [author], 1)
 ]
 
@@ -157,7 +157,7 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'LammpsIO', 'LammpsIO Documentation',
+    (master_doc, 'LammpsIO', u'LammpsIO Documentation',
      author, 'LammpsIO', 'One line description of project.',
      'Miscellaneous'),
 ]
